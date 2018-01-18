@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Vim package management</title>
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/syntax.css" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <h1>Vim package management</h1>
+            <article>
+    <section class="header">
+        
+    </section>
+    <section>
+        <p>Wellcome back, it’s been a week since my first post. This week i want to write about new vim 8 pacakge management. Before vim 8, to manage plugins, normally you need to install a third-party plugin management such as Pathogen, vim-plug… but starting from vim 8, you can use built-in vim package management to do that.</p>
+<p>First, let’s upgrade vim to version 8. You can install it using your OS package management (pacman, brew, …), just make sure it is version 8.</p>
+<p><em>I should probably introduce more about vim, but there are some plugin i can’t live without so I need to setup package management first. I promise i will introduce how to use vim later.</em></p>
+<p>Here is how vim 8 package management works:</p>
+<pre><code>.vim
+└── pack
+    └── anhduy
+        ├── opt
+        └── start</code></pre>
+<ul>
+<li><code>anhduy</code>: You can name this directory whatever you want, vim doesn’t care about this folder name</li>
+<li><code>start</code>: Always loaded plugins directory: put the plugin you want vim to load here</li>
+<li><code>opt</code>: Optional plugins directory: vim will not load plugins inside this folder unless you ask it to by running <code>:packadd</code></li>
+</ul>
+<p>Now, if you want to install <a href="https://github.com/ctrlpvim/ctrlp.vim">ctrlp</a>, just clone it into <code>start</code> and vim will autoload it.</p>
+<p>Try another one, clone <a href="https://github.com/majutsushi/tagbar">Tagbar</a> into <code>opt</code>, then confirm that you can’t run <code>:Tagbar</code> until you run <code>:packadd tagbar</code></p>
+<p>That’s all of it, now you can use plugins with vim itself without any other tools.</p>
+<p>Questions from (imagination) readers:</p>
+<pre><code>Q: What do you mean by &quot;clone it into start&quot;?
+A: That's a [git]() specific term, basically it mean you copy the whole folder and put it inside `start`</code></pre>
+<pre><code>Q: Can vim package management allow me to define plugins in vimrc or have command to download plugins
+A: No, it only know how to load your plugins</code></pre>
+<pre><code>Q: So now my vimrc isn't the source of truth, which defined all my vim config anymore?
+A: ...</code></pre>
+<pre><code>Q: If i use this, how can i copy by vimrc to a server and use it, before that i have vim-plug download everything for me
+A: ... ...</code></pre>
+<pre><code>An early converted reader: I removed vim-plug and use vim 8 pacakge management now, it works fine, but how can i update my plugins?
+A: ... ... ...</code></pre>
+<pre><code>Another early converted: This thing is useless, it can't update my plugins likes vim-plug. How can i update my plugin :rage: ?
+A: :dont-know: :who-care:</code></pre>
+<pre><code>Others: Wait, wait, I don't understand, what should i do now, please answer above questions :crying:
+A: :dun-care: :dun-care: :running-away:</code></pre>
+<p>Thanks for reading, see you again next time on how to setup and use vim as main editor.</p>
+    </section>
+    <section class="footer">
+        January 18, 2018
+    </section>
+</article>
+
+        </main>
+    </body>
+</html>
