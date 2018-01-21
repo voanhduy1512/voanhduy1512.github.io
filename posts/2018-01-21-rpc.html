@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RPC</title>
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/syntax.css" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <h1>RPC</h1>
+            <article>
+    <section class="header">
+        
+    </section>
+    <section>
+        <p>Second posts of the week, this time I have a more interesting topic to share. Let’s talk about RPC and specially gRPC, actually RPC with a pre defined static structure such as protobuf or thrift.</p>
+<p>After a few years working as software developer, i heard about RPC a few times. It was mentioned liked an outdated, no longer suitable, nobody used, pre-1990 kind of technology so i’d actually looked at it. Then come this week, i was reading about how to use Swagger[0] to define schema and structure for REST api. At first it’s quite interesting when you can defined a Swagger spec, then use it as a spec to run against your code to verify your code. It works well but … i don’t think it’s enough. It seems like writing document and the problem with document is it very easy to outdated. Even use it as spec, it only cover one senario, if i calls it with different request body, will it return me a different data structure? After learning Haskell, i prefer using a static, strict type, predefined data structure than using a dynamic type, with flexible json body and writing more tests to cover it. I believe in my tests but as the same time, i always know i don’t have enough tests. So I tried to find if there is any better solution out there.</p>
+<p><em>I can’t remember exactly how i find RPC when i was searching for the answer. But anyway, let’s ignore it</em></p>
+<p>What’s is RPC? RPC stands for remote procedure call, which defined as when a computer program causes a procedure (subroutine) to execute in a different address space (commonly on another computer on a shared network), which is coded as if it were a normal (local) procedure call, without the programmer explicitly coding the details for the remote interaction [1]. Meaning you have two processes A and B in same machine, you can use rpc to call B procedure from A. You can also call a rpc of C from a different machine in the network or somewhere on internet. Does that sound familier to you?</p>
+<p>My first thought is what is the different between that and (so called) REST api that i wrote?</p>
+<p>But wait, before that, what’s REST api? I suggest to search the internet for Roy Fielding papaer that decribes and coined the term REST [2]. I think most of people, whom I know, included me, misunderstand REST api and call something very different REST api [3].</p>
+<p>Right now most of REST api i know works likes this: you have a fixed url, https://example.com/api/posts, then you can use http verb such as GET, POST, PATCH or DELETE to interact with that endpoint to query, create, modify or delete that <code>post</code> resource. Also you need to read the doc somewhere which tell you what should be included in the body to send request, what is the response will be. So what’s wrong with it?</p>
+<p>That’s not REST api, or at least it isn’t what Roy Fielding decribed in his paper. And problem starts from there.</p>
+<p>That kind of api isn’t REST, and the more interesting thing is it sounds exaclty like RPC. Your server and client are coupling by a fixed url, if server changes the url, all client will be crashed. Your server and client depend on fixed data structure (json, xml, form data), if you want to change the request or response, all of your client need to be updated or the server will reject the request (or client doesn’t understand the response). Your REST api is actually a remote procedure call.</p>
+<p>So what? Nothing. It’s totally fine if your REST api is actually rpc, I never see a real implementation of Roy Fielding REST api in the wild, now REST api is the api above, everybody agree on that.</p>
+<p>But let’s take a step back and think about this. If you don’t accept that your api is rpc, which it means you implement it in a way that decoupling client and server, they can change quite independently, your client can detect and discover a url changes, understand media types … Then the rest of this post won’t apply to you (and please send/show me how to do that). If you accept that maybe your REST api is the same as rpc, maybe it’s not but it has same limitation without any extra benefits, maybe the nature of your client and server always couling to each other, then maybe we can find a better solution to implement communication between client and server.</p>
+<p>Into Grpc, I use it here as an example of a (maybe) better alternate to your normal REST api. Grpc itself is a RPC implementation that use HTTP/2 as transport protocol and use protobuf for serialize structured data exchanged between client and server. You basically write a proto (protobuf file) spec first, which contains definition of the service, how to call it, how many arguments does it has, structure of the request and response data. Everything will be written down first in proto file, and then from that, you can generate code to your preference languages: go, ruby, java (c, haskell and rust also supported from community).</p>
+<p>So what is the different now? Everything is well defined, code is auto generated for client and server, there won’t be any type or structure problem whatsoever. If server updates their spec, their proto file will changes. You will know and update your client to work with new spec. Everything is transparent and easy, problem such as someone silently update their service and your service starts to fail without any reason, a missing field or wrong json data or a string instead of an int. Also, client can choice to update to get new service or information from the response, or <strong>not</strong> to update and still be compatiable with the server. Some one add extra fields in server and you don’t need that fields? Just ignore it, don’t care, no need to do anything.</p>
+<p>That’s the reason i think gRPC is a better solution. It has right balance of strictness and flexibility. It’s strict when come to contracts both client and server use. But it’s also flexible when come to changes, you can update or keep the current version and still compatiable.</p>
+<p>I guess that’s it for now, there will be another post about using gRPC but for now, think about this: Is it better for your current system if you replce what you call REST api with this gRPC?</p>
+<p>Thank you and see you next time.</p>
+<p>[0] https://swagger.io/</p>
+<p>[1] https://en.wikipedia.org/wiki/Remote_procedure_call</p>
+<p>[2] https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm</p>
+<p>[3] Actually, REST is not the only or first term that people mostly use it wrong. The same goes for OOP, MVC …</p>
+<p>P/S: sorry for this ugly reference links, i will fix it later.</p>
+    </section>
+    <section class="footer">
+        January 21, 2018
+    </section>
+</article>
+
+        </main>
+    </body>
+</html>
