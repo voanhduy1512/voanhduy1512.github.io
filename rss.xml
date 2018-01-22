@@ -7,7 +7,7 @@
         <description><![CDATA[]]></description>
         <atom:link href="https://anhduy.io/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Mon, 22 Jan 2018 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Tue, 23 Jan 2018 00:00:00 UT</lastBuildDate>
         <item>
     <title>RPC</title>
     <link>https://anhduy.io/posts/2018-01-21-rpc.html</link>
@@ -47,7 +47,7 @@
     </section>
 </article>
 ]]></description>
-    <pubDate>Sun, 21 Jan 2018 00:00:00 UT</pubDate>
+    <pubDate>Sun, 23 Jan 2018 00:00:00 UT</pubDate>
     <guid>https://anhduy.io/posts/2018-01-21-rpc.html</guid>
     <dc:creator>Anh Duy</dc:creator>
 </item>
