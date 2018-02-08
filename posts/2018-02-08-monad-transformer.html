@@ -85,7 +85,7 @@
 <a class="sourceLine" id="cb4-2" data-line-number="2">  runA</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  runB</a></code></pre></div>
 <p><em>is</em></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" data-line-number="1">run <span class="fu">=</span> runA <span class="fu">&gt;&gt;=</span> runB</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" data-line-number="1">run <span class="fu">=</span> runA <span class="fu">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> runB</a></code></pre></div>
 <p>So the main problem here is we use two monad <code>IO</code> and <code>Maybe</code> together, and right now they don’t work well with each other. We only use feature of <code>IO</code> monad and not <code>Maybe</code> monad. To illustrate the idea, here is what will happens if we write our code with only <code>Maybe</code> monad.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">type</span> <span class="dt">Post</span> <span class="fu">=</span> <span class="dt">String</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">type</span> <span class="dt">UserId</span> <span class="fu">=</span> <span class="dt">String</span></a>
