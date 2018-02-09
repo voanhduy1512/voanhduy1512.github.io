@@ -55,7 +55,7 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9">      maybeFriendUser <span class="ot">&lt;-</span> findUser friendId</a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">      <span class="kw">case</span> maybeFriendUser <span class="kw">of</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">        <span class="dt">Just</span> friendUser <span class="ot">-&gt;</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">          maybeIsFriend <span class="ot">&lt;-</span> getRelationShip user friendUser</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">          maybeIsFriend <span class="ot">&lt;-</span> isFriend user friendUser</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">          <span class="kw">case</span> maybeIsFriend <span class="kw">of</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14">            <span class="co">-- I really want to give up this blog post at this point.</span></a>
 <a class="sourceLine" id="cb2-15" data-line-number="15">            <span class="dt">Just</span> isFriend <span class="ot">-&gt;</span> <span class="kw">do</span></a>
