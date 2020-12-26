@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Monad transformer</title>
         <link rel="stylesheet" href="../css/default.css" />
+        <link rel="shortcut icon" href="../favicon.ico" />
     </head>
     <body>
         <header>
@@ -24,154 +25,154 @@
     <section>
         <p>This week, let’s talk about Haskell. I has been learning Haskell in my free time for a while and i am really enjoy it. I recommend everybody to learn it, whether you can use it for your day job or not, because it will give you a very different view and way of thinking to improve your programming skills.</p>
 <p>Let’s start with a very simple problem likes this: given a user id, we want to find all posts of that user.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">type</span> <span class="dt">Post</span> <span class="ot">=</span> <span class="dt">String</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">type</span> <span class="dt">UserId</span> <span class="ot">=</span> <span class="dt">String</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">data</span> <span class="dt">User</span> <span class="ot">=</span> <span class="dt">User</span> {<span class="ot"> _userId ::</span> <span class="dt">UserId</span> }</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="ot">findUser ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">User</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>findUser <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="ot">findPost ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> [<span class="dt">Post</span>])</span>
-<span id="cb1-9"><a href="#cb1-9"></a>findPost <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="ot">getPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> [<span class="dt">Post</span>])</span>
-<span id="cb1-12"><a href="#cb1-12"></a>getPosts userId <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>  maybeUser <span class="ot">&lt;-</span> findUser userId</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="kw">case</span> maybeUser <span class="kw">of</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="dt">Just</span> user <span class="ot">-&gt;</span> findPost user</span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">type</span> <span class="dt">Post</span> <span class="ot">=</span> <span class="dt">String</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">type</span> <span class="dt">UserId</span> <span class="ot">=</span> <span class="dt">String</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">User</span> <span class="ot">=</span> <span class="dt">User</span> {<span class="ot"> _userId ::</span> <span class="dt">UserId</span> }</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="ot">findUser ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">User</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>findUser <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="ot">findPost ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> [<span class="dt">Post</span>])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>findPost <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="ot">getPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> [<span class="dt">Post</span>])</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>getPosts userId <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  maybeUser <span class="ot">&lt;-</span> findUser userId</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="kw">case</span> maybeUser <span class="kw">of</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="dt">Just</span> user <span class="ot">-&gt;</span> findPost user</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
 <p>First, we find the user by calling <code>findUser</code>. If we find the user, we will call <code>findPost</code> to get all posts of that user. Notice the implementation of <code>getPosts</code>, we need to unwrap <code>Maybe</code>, pattern match on it.</p>
 <p><em>In case you are new to Haskell, <code>IO</code> is the monad that allows you do IO side effect in Haskell, read file, print to console, make network, api call. <code>Maybe</code> is another monad to represent computation that might go wrong by not returning a value. So when you see <code>Maybe User</code>, it means this function may return a user, may be not. That’s why we need to check if the <code>Maybe</code> value is <code>Just</code> or <code>Nothing</code>. And <code>IO (Maybe User)</code> means this function will make some IO call to outside, can read a file, query database and returns a <code>Maybe User</code>.</em></p>
 <p>Let’s have another example to see the problem more clearly. Now we has another requirement, only friends can see all posts of each other. So we need to check friend relationship before return all posts.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1"></a><span class="ot">isFriend ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">Bool</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>isFriend <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="ot">getFriendPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> [<span class="dt">Post</span>])</span>
-<span id="cb2-5"><a href="#cb2-5"></a>getFriendPosts userId friendId <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>  maybeUser <span class="ot">&lt;-</span> findUser userId</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="kw">case</span> maybeUser <span class="kw">of</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="dt">Just</span> user <span class="ot">-&gt;</span> <span class="kw">do</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>      maybeFriendUser <span class="ot">&lt;-</span> findUser friendId</span>
-<span id="cb2-10"><a href="#cb2-10"></a>      <span class="kw">case</span> maybeFriendUser <span class="kw">of</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>        <span class="dt">Just</span> friendUser <span class="ot">-&gt;</span> <span class="kw">do</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>          maybeIsFriend <span class="ot">&lt;-</span> getRelationShip user friendUser</span>
-<span id="cb2-13"><a href="#cb2-13"></a>          <span class="kw">case</span> maybeIsFriend <span class="kw">of</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>            <span class="co">-- I really want to give up this blog post at this point.</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>            <span class="dt">Just</span> isFriend <span class="ot">-&gt;</span> <span class="kw">do</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>              <span class="kw">if</span> isFriend</span>
-<span id="cb2-17"><a href="#cb2-17"></a>              <span class="kw">then</span> </span>
-<span id="cb2-18"><a href="#cb2-18"></a>                getPosts friendId</span>
-<span id="cb2-19"><a href="#cb2-19"></a>              <span class="kw">else</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>                <span class="fu">return</span> <span class="dt">Nothing</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>            <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ot">isFriend ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>isFriend <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ot">getFriendPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> [<span class="dt">Post</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>getFriendPosts userId friendId <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  maybeUser <span class="ot">&lt;-</span> findUser userId</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="kw">case</span> maybeUser <span class="kw">of</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="dt">Just</span> user <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>      maybeFriendUser <span class="ot">&lt;-</span> findUser friendId</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>      <span class="kw">case</span> maybeFriendUser <span class="kw">of</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>        <span class="dt">Just</span> friendUser <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>          maybeIsFriend <span class="ot">&lt;-</span> getRelationShip user friendUser</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>          <span class="kw">case</span> maybeIsFriend <span class="kw">of</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>            <span class="co">-- I really want to give up this blog post at this point.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>            <span class="dt">Just</span> isFriend <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>              <span class="kw">if</span> isFriend</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>              <span class="kw">then</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>                getPosts friendId</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>              <span class="kw">else</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>                <span class="fu">return</span> <span class="dt">Nothing</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>            <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
 <p>Now, the code looks really ugly now. We have a deep nested code, each step we need to manual unwrap <code>Maybe</code> value, process if it has value, otherwise return <code>Nothing</code>. This looks really bad not only because of nested steps, but also because we can’t leverage <code>Maybe</code> monad feature.</p>
 <p>Let’s recall the <code>Monad</code> instance of <code>Maybe</code> and <code>IO</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Maybe</span> <span class="kw">where</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">Nothing</span> <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">Nothing</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">Just</span> x <span class="op">&gt;&gt;</span> f <span class="ot">=</span> f x</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">-- This is not the real implementation of IO monad but you can get the idea</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">IO</span> <span class="kw">where</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>  (action1 <span class="op">&gt;&gt;=</span> action2) world0 <span class="ot">=</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">let</span> (a, world1) <span class="ot">=</span> action1 world0</span>
-<span id="cb3-9"><a href="#cb3-9"></a>        (b, world2) <span class="ot">=</span> action2 a world1</span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="kw">in</span> (b, world2)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Maybe</span> <span class="kw">where</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="dt">Nothing</span> <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="dt">Just</span> x <span class="op">&gt;&gt;</span> f <span class="ot">=</span> f x</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">-- This is not the real implementation of IO monad but you can get the idea</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">IO</span> <span class="kw">where</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  (action1 <span class="op">&gt;&gt;=</span> action2) world0 <span class="ot">=</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">let</span> (a, world1) <span class="ot">=</span> action1 world0</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>        (b, world2) <span class="ot">=</span> action2 a world1</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="kw">in</span> (b, world2)</span></code></pre></div>
 <p>In <code>Maybe</code> monad, the computation chains will stop when <code>Nothing</code> is returned from any computation, so <code>Nothing &gt;&gt;= f</code> will return <code>Nothing</code>. In <code>IO</code> monad, it will run each computation sequencely. So if we mix them together, our <code>IO Maybe</code> mond which behave like <code>IO</code> normal monad. But in this case, we want our <code>IO Maybe</code> to also have behaviour of <code>Maybe</code> monad. If any computation returns <code>Nothing</code>, it should stop and return <code>Nothing</code>.</p>
 <p><em><code>do</code> notation is a syntax sugar in haskell</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1"></a>run <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  runA</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  runB</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>run <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  runA</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  runB</span></code></pre></div>
 <p><em>is</em></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1"></a>run <span class="ot">=</span> runA <span class="op">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> runB</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>run <span class="ot">=</span> runA <span class="op">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> runB</span></code></pre></div>
 <p>So the main problem here is we use two monad <code>IO</code> and <code>Maybe</code> together, and right now they don’t work well with each other. We only use feature of <code>IO</code> monad and not <code>Maybe</code> monad. To illustrate the idea, here is what will happens if we write our code with only <code>Maybe</code> monad.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">type</span> <span class="dt">Post</span> <span class="ot">=</span> <span class="dt">String</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">type</span> <span class="dt">UserId</span> <span class="ot">=</span> <span class="dt">String</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">data</span> <span class="dt">User</span> <span class="ot">=</span> <span class="dt">User</span> {<span class="ot"> _userId ::</span> <span class="dt">UserId</span> }</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="ot">findUser ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">User</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>findUser <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="ot">findPost ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> [<span class="dt">Post</span>]</span>
-<span id="cb6-9"><a href="#cb6-9"></a>findPost <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="ot">getPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> [<span class="dt">Post</span>]</span>
-<span id="cb6-12"><a href="#cb6-12"></a>getPosts userId <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>  user <span class="ot">&lt;-</span> findUser userId</span>
-<span id="cb6-14"><a href="#cb6-14"></a>  findPost user</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="ot">isFriend ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Bool</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>isFriend <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="ot">getFriendPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> [<span class="dt">Post</span>]</span>
-<span id="cb6-20"><a href="#cb6-20"></a>getFriendPosts userId friendId <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a>  user <span class="ot">&lt;-</span> findUser userId</span>
-<span id="cb6-22"><a href="#cb6-22"></a>  friend <span class="ot">&lt;-</span> findUser friendId</span>
-<span id="cb6-23"><a href="#cb6-23"></a>  friendCheck <span class="ot">&lt;-</span> isFriend user friend</span>
-<span id="cb6-24"><a href="#cb6-24"></a>  <span class="kw">if</span> friendCheck</span>
-<span id="cb6-25"><a href="#cb6-25"></a>  <span class="kw">then</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a>    getPosts friendId</span>
-<span id="cb6-27"><a href="#cb6-27"></a>  <span class="kw">else</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a>    <span class="dt">Nothing</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">type</span> <span class="dt">Post</span> <span class="ot">=</span> <span class="dt">String</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">type</span> <span class="dt">UserId</span> <span class="ot">=</span> <span class="dt">String</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">User</span> <span class="ot">=</span> <span class="dt">User</span> {<span class="ot"> _userId ::</span> <span class="dt">UserId</span> }</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="ot">findUser ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">User</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>findUser <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="ot">findPost ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> [<span class="dt">Post</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>findPost <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="ot">getPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> [<span class="dt">Post</span>]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>getPosts userId <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>  user <span class="ot">&lt;-</span> findUser userId</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>  findPost user</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="ot">isFriend ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Bool</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>isFriend <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="ot">getFriendPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> [<span class="dt">Post</span>]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>getFriendPosts userId friendId <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>  user <span class="ot">&lt;-</span> findUser userId</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>  friend <span class="ot">&lt;-</span> findUser friendId</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>  friendCheck <span class="ot">&lt;-</span> isFriend user friend</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a>  <span class="kw">if</span> friendCheck</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a>  <span class="kw">then</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a>    getPosts friendId</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a>  <span class="kw">else</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a>    <span class="dt">Nothing</span></span></code></pre></div>
 <p>It looks nicer, right? We don’t need to check for <code>Just</code> and <code>Nothing</code> at every step, we depend on the monad instance of <code>Maybe</code> to take care of it.</p>
 <p>If only we can make our <code>IO Maybe</code> behave like both <code>IO</code>, which can make IO call to outside world, and <code>Maybe</code>, represent a computation may return nothing and stop as soon as one function returns <code>Nothing</code>, we will be able to make the code above less verbose and more expressive. Let’s try to create that new monad together, we will call it <code>MaybeIO</code> monad.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">newtype</span> <span class="dt">MaybeIO</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> {<span class="ot"> runMaybeIO ::</span> <span class="dt">IO</span>(<span class="dt">Maybe</span> a) }</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="ot">findUser ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> <span class="dt">User</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>findUser <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="ot">findPost ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> [<span class="dt">Post</span>]</span>
-<span id="cb7-7"><a href="#cb7-7"></a>findPost <span class="ot">=</span> <span class="fu">undefined</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="ot">isFriend ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> <span class="dt">Bool</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>isFriend <span class="ot">=</span> <span class="fu">undefined</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">newtype</span> <span class="dt">MaybeIO</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> {<span class="ot"> runMaybeIO ::</span> <span class="dt">IO</span>(<span class="dt">Maybe</span> a) }</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="ot">findUser ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> <span class="dt">User</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>findUser <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="ot">findPost ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> [<span class="dt">Post</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>findPost <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="ot">isFriend ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> <span class="dt">Bool</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>isFriend <span class="ot">=</span> <span class="fu">undefined</span></span></code></pre></div>
 <p>Now before we rewrite <code>getFriendPosts</code>, we need to provide monad instance for our <code>MaybeIO</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">instance</span> <span class="dt">Functor</span> <span class="dt">MaybeIO</span> <span class="kw">where</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">fmap</span> f <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">.</span> <span class="fu">fmap</span> (<span class="fu">fmap</span> f) <span class="op">.</span> runMaybeIO</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">instance</span> <span class="dt">Applicative</span> <span class="dt">MaybeIO</span> <span class="kw">where</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">pure</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  f <span class="op">&lt;*&gt;</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> (<span class="op">&lt;*&gt;</span>) <span class="op">&lt;$&gt;</span> (runMaybeIO f) <span class="op">&lt;*&gt;</span> (runMaybeIO a)</span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">MaybeIO</span> <span class="kw">where</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">return</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
-<span id="cb8-10"><a href="#cb8-10"></a></span>
-<span id="cb8-11"><a href="#cb8-11"></a>  x <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> runMaybeIO x <span class="op">&gt;&gt;=</span> \a <span class="ot">-&gt;</span> <span class="kw">case</span> a <span class="kw">of</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>      <span class="dt">Just</span> value <span class="ot">-&gt;</span> runMaybeIO <span class="op">$</span> f value</span>
-<span id="cb8-13"><a href="#cb8-13"></a>      <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Functor</span> <span class="dt">MaybeIO</span> <span class="kw">where</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>  <span class="fu">fmap</span> f <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">.</span> <span class="fu">fmap</span> (<span class="fu">fmap</span> f) <span class="op">.</span> runMaybeIO</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Applicative</span> <span class="dt">MaybeIO</span> <span class="kw">where</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  <span class="fu">pure</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>  f <span class="op">&lt;*&gt;</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> (<span class="op">&lt;*&gt;</span>) <span class="op">&lt;$&gt;</span> (runMaybeIO f) <span class="op">&lt;*&gt;</span> (runMaybeIO a)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">MaybeIO</span> <span class="kw">where</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>  <span class="fu">return</span> a <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>  x <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">MaybeIO</span> <span class="op">$</span> runMaybeIO x <span class="op">&gt;&gt;=</span> \a <span class="ot">-&gt;</span> <span class="kw">case</span> a <span class="kw">of</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>      <span class="dt">Just</span> value <span class="ot">-&gt;</span> runMaybeIO <span class="op">$</span> f value</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>      <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
 <p>Basically remember our <code>MaybeIO</code> is actually <code>IO Maybe</code>, so we write our new monad based on functionality of these two. For the <code>(&gt;&gt;=)</code> function, we called <code>runMaybeIO x</code>, which return us a <code>IO Maybe</code>. Then we use <code>(&gt;&gt;=)</code> instance of <code>IO</code> to get back a, which is <code>Maybe</code> monad.</p>
 <p>If you confuse because of <code>runMaybeIO</code> and <code>MaybeIO</code> constructor, here are their signatures:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1"></a><span class="dt">MaybeIO</span><span class="ot"> ::</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> a) <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> a</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="ot">runMaybeIO ::</span> <span class="dt">MaybeIO</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> a)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="dt">MaybeIO</span><span class="ot"> ::</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> a) <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> a</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="ot">runMaybeIO ::</span> <span class="dt">MaybeIO</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> a)</span></code></pre></div>
 <p>We use them to convert between our new <code>MaybeIO</code> monad and the original <code>IO Maybe</code>.</p>
 <p>Now it’s time to rewrite our <code>getFriendPosts</code></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1"></a><span class="ot">getFriendPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> [<span class="dt">Post</span>]</span>
-<span id="cb10-2"><a href="#cb10-2"></a>getFriendPosts userId friendId <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  user <span class="ot">&lt;-</span> findUser' userId</span>
-<span id="cb10-4"><a href="#cb10-4"></a>  friend <span class="ot">&lt;-</span> findUser' friendId</span>
-<span id="cb10-5"><a href="#cb10-5"></a>  friendCheck <span class="ot">&lt;-</span> isFriend' user friend</span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="kw">if</span> friendCheck</span>
-<span id="cb10-7"><a href="#cb10-7"></a>  <span class="kw">then</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>    getPosts' friendId</span>
-<span id="cb10-9"><a href="#cb10-9"></a>  <span class="kw">else</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>    <span class="fu">return</span> <span class="fu">mempty</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ot">getFriendPosts ::</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">MaybeIO</span> [<span class="dt">Post</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>getFriendPosts userId friendId <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>  user <span class="ot">&lt;-</span> findUser' userId</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>  friend <span class="ot">&lt;-</span> findUser' friendId</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>  friendCheck <span class="ot">&lt;-</span> isFriend' user friend</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>  <span class="kw">if</span> friendCheck</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>  <span class="kw">then</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>    getPosts' friendId</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>  <span class="kw">else</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>    <span class="fu">return</span> <span class="fu">mempty</span></span></code></pre></div>
 <p>It looks like the example with <code>Maybe</code> monad above, right? We’ve just combined <code>IO</code> and <code>Maybe</code> together into a single monad, which behave like <code>Maybe</code> and have <code>IO</code> capability. If we go one step further, generalize it, instead of <code>MaybeIO</code>, we want to use <code>Maybe</code> with any other monad, add <code>Maybe</code> behaviour to it.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">newtype</span> <span class="dt">MaybeT</span> m a <span class="ot">=</span> <span class="dt">MaybeT</span> {<span class="ot"> runMaybeT ::</span> m(<span class="dt">Maybe</span> a) }</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">instance</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Functor</span> (<span class="dt">MaybeT</span> m) <span class="kw">where</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">fmap</span> f <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">.</span> <span class="fu">fmap</span> (<span class="fu">fmap</span> f) <span class="op">.</span> runMaybeT</span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">instance</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Applicative</span> (<span class="dt">MaybeT</span> m) <span class="kw">where</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">pure</span> a <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>  f <span class="op">&lt;*&gt;</span> a <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> (<span class="op">&lt;*&gt;</span>) <span class="op">&lt;$&gt;</span> (runMaybeT f) <span class="op">&lt;*&gt;</span> (runMaybeT a)</span>
-<span id="cb11-9"><a href="#cb11-9"></a></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="kw">instance</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Monad</span> (<span class="dt">MaybeT</span> m) <span class="kw">where</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">return</span> a <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
-<span id="cb11-12"><a href="#cb11-12"></a></span>
-<span id="cb11-13"><a href="#cb11-13"></a>  x <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> runMaybeT x <span class="op">&gt;&gt;=</span> \a <span class="ot">-&gt;</span> <span class="kw">case</span> a <span class="kw">of</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a>      <span class="dt">Just</span> value <span class="ot">-&gt;</span> runMaybeT <span class="op">$</span> f value</span>
-<span id="cb11-15"><a href="#cb11-15"></a>      <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">newtype</span> <span class="dt">MaybeT</span> m a <span class="ot">=</span> <span class="dt">MaybeT</span> {<span class="ot"> runMaybeT ::</span> m(<span class="dt">Maybe</span> a) }</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Functor</span> (<span class="dt">MaybeT</span> m) <span class="kw">where</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>  <span class="fu">fmap</span> f <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">.</span> <span class="fu">fmap</span> (<span class="fu">fmap</span> f) <span class="op">.</span> runMaybeT</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Applicative</span> (<span class="dt">MaybeT</span> m) <span class="kw">where</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>  <span class="fu">pure</span> a <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>  f <span class="op">&lt;*&gt;</span> a <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> (<span class="op">&lt;*&gt;</span>) <span class="op">&lt;$&gt;</span> (runMaybeT f) <span class="op">&lt;*&gt;</span> (runMaybeT a)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Monad</span> (<span class="dt">MaybeT</span> m) <span class="kw">where</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a>  <span class="fu">return</span> a <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> <span class="fu">return</span> (<span class="dt">Just</span> a)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a>  x <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">MaybeT</span> <span class="op">$</span> runMaybeT x <span class="op">&gt;&gt;=</span> \a <span class="ot">-&gt;</span> <span class="kw">case</span> a <span class="kw">of</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a>      <span class="dt">Just</span> value <span class="ot">-&gt;</span> runMaybeT <span class="op">$</span> f value</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a>      <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="fu">return</span> <span class="dt">Nothing</span></span></code></pre></div>
 <p>Instead of <code>MaybeIO</code>, we have <code>MaybeT m</code> with m is another monad such as <code>IO</code>. Our <code>MaybeIO</code> above become <code>MaybeT IO</code>. We have finished written our first Monad Transformer, MaybeT.</p>
 <p>Monad Transformer allows us to stack multiple monads together and behave likes one single monad, combined all functionalities of these monads inside the stack. For example, if we want to build a real application, we need to read global config (<code>Reader</code> monad), write log (<code>Writer</code> monad), store application state (<code>State</code> monad), handling exception (<code>Either</code> monad), and of course <code>IO</code> monad. We can write a <code>ReaderT AppConfig (WriterT String (StateT AppState (ExceptT String IO)))</code> monad to represent our application and reuse all functionality of these monads.</p>
 <p>That’s all for this post. We saw two real world problems. We learn to write a custom <code>MaybeIO</code> monad which combined <code>Maybe</code> and <code>IO</code> together to solve the problem. After that we generalize it into <code>MaybeT</code> monad transformer and learn how monad transformer can help us in real application by stack multiple monad together.</p>
